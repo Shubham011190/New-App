@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     Data mData = new Data();
-    Data[] data;
+//    Data[] data;
     public void createNewData(Data d){
         mData=d;
     }
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         temp.setDebitAmt(5000.00);
         temp.setCreditAmt(2000.00);
 
-        newList.setAdapter(new rAdapter(data));
+        newList.setAdapter(new rAdapter(temp));
 
         Button btnAdd = findViewById(R.id.addBtn);
         btnAdd.setOnClickListener(new View.OnClickListener() {

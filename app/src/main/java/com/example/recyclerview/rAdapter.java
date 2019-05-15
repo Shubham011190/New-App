@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class rAdapter extends RecyclerView.Adapter<rAdapter.rViewHolder> {
-    Data[] mtemp;
+    Data mtemp;
 
-    public rAdapter(Data[] mtemp){
+    public rAdapter(Data mtemp){
         this.mtemp = mtemp;
     }
     @NonNull
@@ -23,9 +23,9 @@ public class rAdapter extends RecyclerView.Adapter<rAdapter.rViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull rViewHolder holder, int i) {
-        String name1 = mtemp[i].getName();
-        String date1 = mtemp[i].getDate();
-        String balance1 = String.valueOf(mtemp[i].getDebitAmt()-mtemp[i].getCreditAmt());
+        String name1 = mtemp.getName();
+        String date1 = mtemp.getDate();
+        String balance1 = String.valueOf(mtemp.getDebitAmt()-mtemp.getCreditAmt());
         holder.nameView.setText(name1);
         holder.dateView.setText(date1);
         holder.balanceView.setText(balance1);
@@ -37,7 +37,7 @@ public class rAdapter extends RecyclerView.Adapter<rAdapter.rViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mtemp.length;
+        return 1;
     }
 
     public class rViewHolder extends RecyclerView.ViewHolder{
