@@ -51,7 +51,6 @@ public class rAdapter extends RecyclerView.Adapter<rAdapter.rViewHolder> {
             dateView = (TextView)itemView.findViewById(R.id.dateDisplay);
             balanceView = (TextView)itemView.findViewById(R.id.balanceDisplay);
 
-            ;
         }
     }
 }

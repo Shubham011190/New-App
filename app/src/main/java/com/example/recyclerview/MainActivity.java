@@ -28,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
         temp.setID("4541");
         temp.setDebitAmt(5000.00);
         temp.setCreditAmt(2000.00);
+        Intent intent = new Intent(this,summaryActivity.class);
+        intent.putExtra("NAME_VAL",temp.getName());
+        intent.putExtra("DATE_VAL",temp.getDate());
+        intent.putExtra("ID_VAL",temp.getID());
+        intent.putExtra("DEBIT_VAL",temp.getDebitAmt());
+        intent.putExtra("CREDIT_VAL",temp.getCreditAmt());
+
 
         newList.setAdapter(new rAdapter(temp));
 
@@ -44,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 activitySummary();
             }
         });
@@ -52,10 +60,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void activitySummary() {
-        TextView idval = findViewById(R.id.balanceDisplay);
-        TextView dateval = findViewById(R.id.dateDisplay);
-        TextView nameval = findViewById(R.id.nameDisplay);
-        TextView idbal = findViewById(R.id.balanceDisplay);
         Intent intent = new Intent(this,summaryActivity.class);
         startActivity(intent);
     }
