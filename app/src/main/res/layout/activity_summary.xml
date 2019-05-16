@@ -15,7 +15,7 @@
 
         <TextView
             android:id="@+id/idHead"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
@@ -26,8 +26,20 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/nameHeadMain"
-            android:layout_width="wrap_content"
+            android:id="@+id/nameHead"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:padding="2dp"
+            android:text="@string/name"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dateHeadMain"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
@@ -38,20 +50,8 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/nameHead"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:padding="2dp"
-            android:text="Name"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/balanceHead"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     Data mData = new Data();
-//    Data[] data;
+    //    Data[] data;
     public void createNewData(Data d){
         mData=d;
     }
