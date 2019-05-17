@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     Data mData = new Data();
@@ -28,13 +27,9 @@ public class MainActivity extends AppCompatActivity {
         temp.setID("4541");
         temp.setDebitAmt(5000.00);
         temp.setCreditAmt(2000.00);
-        Intent intent = new Intent(this,summaryActivity.class);
-        intent.putExtra("NAME_VAL",temp.getName());
-        intent.putExtra("DATE_VAL",temp.getDate());
-        intent.putExtra("ID_VAL",temp.getID());
-        intent.putExtra("DEBIT_VAL",temp.getDebitAmt());
-        intent.putExtra("CREDIT_VAL",temp.getCreditAmt());
-
+        temp.setBalanceAmt(temp.getDebitAmt()-temp.getCreditAmt());
+        final Intent intent = new Intent(this,summaryActivity.class);
+        intent.putExtra("DATA",temp);
 
         newList.setAdapter(new rAdapter(temp));
 
@@ -52,15 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                activitySummary();
+                activitySummary(intent);
             }
         });
 
 
     }
 
-    private void activitySummary() {
-        Intent intent = new Intent(this,summaryActivity.class);
+    private void activitySummary(Intent intent) {
         startActivity(intent);
     }
 

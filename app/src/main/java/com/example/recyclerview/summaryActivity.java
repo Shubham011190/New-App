@@ -15,7 +15,8 @@ public class summaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_summary);
         RecyclerView newRecycler = (RecyclerView)findViewById(R.id.summaryRecycler);
         newRecycler.setLayoutManager(new LinearLayoutManager(this));
-        newRecycler.setAdapter(new summaryAdapter());
+        Data temp = getIntent().getParcelableExtra("DATA");
+        newRecycler.setAdapter(new summaryAdapter(temp));
 
 
     }
