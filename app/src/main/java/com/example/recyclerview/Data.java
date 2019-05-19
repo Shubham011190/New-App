@@ -3,6 +3,8 @@ package com.example.recyclerview;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class Data implements Parcelable {
     private String name;
     private String date;
@@ -127,4 +129,5 @@ public class Data implements Parcelable {
             dest.writeDouble(balanceAmt);
         }
     }
-}
+
+    }

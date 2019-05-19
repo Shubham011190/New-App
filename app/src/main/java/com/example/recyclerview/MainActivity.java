@@ -8,11 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
-    Data mData = new Data();
-    //    Data[] data;
-    public void createNewData(Data d){
-        mData=d;
+    static ArrayList<Data> data = new ArrayList<Data>();
+    public static void createList(Data mtemp) {
+        data.add(mtemp);
     }
 
     @Override
@@ -28,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
         temp.setDebitAmt(5000.00);
         temp.setCreditAmt(2000.00);
         temp.setBalanceAmt(temp.getDebitAmt()-temp.getCreditAmt());
+        data.add(temp);
         final Intent intent = new Intent(this,summaryActivity.class);
         intent.putExtra("DATA",temp);
-
-        newList.setAdapter(new rAdapter(temp));
+        newList.setAdapter(new rAdapter(data));
 
         Button btnAdd = findViewById(R.id.addBtn);
         btnAdd.setOnClickListener(new View.OnClickListener() {

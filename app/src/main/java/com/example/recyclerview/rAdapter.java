@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class rAdapter extends RecyclerView.Adapter<rAdapter.rViewHolder> {
-    Data mtemp;
+import java.util.ArrayList;
 
-    public rAdapter(Data mtemp){
+public class rAdapter extends RecyclerView.Adapter<rAdapter.rViewHolder> {
+    ArrayList<Data> mtemp;
+
+    public rAdapter(ArrayList<Data> mtemp){
         this.mtemp = mtemp;
     }
     @NonNull
@@ -23,9 +25,9 @@ public class rAdapter extends RecyclerView.Adapter<rAdapter.rViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull rViewHolder holder, int i) {
-        String name1 = mtemp.getName();
-        String date1 = mtemp.getDate();
-        String balance1 = String.valueOf(mtemp.getDebitAmt()-mtemp.getCreditAmt());
+        String name1 = mtemp.get(i).getName();
+        String date1 = mtemp.get(i).getDate();
+        String balance1 = String.valueOf(mtemp.get(i).getDebitAmt()- mtemp.get(i).getCreditAmt());
         holder.nameView.setText(name1);
         holder.dateView.setText(date1);
         holder.balanceView.setText(balance1);
