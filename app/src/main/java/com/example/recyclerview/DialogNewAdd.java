@@ -43,8 +43,9 @@ public class DialogNewAdd extends DialogFragment {
                 newData.setDebitAmt(Double.valueOf(debitAdd.getText().toString()));
                 newData.setCreditAmt(Double.valueOf(creditAdd.getText().toString()));
 
-                MainActivity callingActivity =(MainActivity)getActivity();
-                callingActivity.createNewData(newData);
+//                MainActivity callingActivity =(MainActivity)getActivity();
+//                callingActivity.createNewData(newData);
+                dismiss();
 
             }
         });
