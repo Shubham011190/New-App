@@ -11,7 +11,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    static ArrayList<Data> data = new ArrayList<Data>();
+    static ArrayList<Data> data = new ArrayList<>();
     public static void createList(Data mtemp) {
         data.add(mtemp);
     }
