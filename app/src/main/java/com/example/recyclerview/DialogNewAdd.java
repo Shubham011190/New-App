@@ -2,6 +2,8 @@ package com.example.recyclerview;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -11,19 +13,21 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class DialogNewAdd extends DialogFragment {
+    private DialogNewAddListener listener;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_new_add,null);
 
-        final AutoCompleteTextView nameAdd = (AutoCompleteTextView)dialogView.findViewById(R.id.nameAdd);
-        final EditText idAdd= (EditText)dialogView.findViewById(R.id.idAdd);
-        final EditText dateAdd= (EditText)dialogView.findViewById(R.id.dateAdd);
-        final EditText debitAdd= (EditText)dialogView.findViewById(R.id.debitAdd);
-        final EditText creditAdd= (EditText)dialogView.findViewById(R.id.creditAdd);
-        Button btnOK= (Button)dialogView.findViewById(R.id.btnOK);
-        Button btnCancel = (Button)dialogView.findViewById(R.id.btnCancel);
+        final AutoCompleteTextView nameAdd = dialogView.findViewById(R.id.nameAdd);
+        final EditText idAdd= dialogView.findViewById(R.id.idAdd);
+        final EditText dateAdd= dialogView.findViewById(R.id.dateAdd);
+        final EditText debitAdd= dialogView.findViewById(R.id.debitAdd);
+        final EditText creditAdd= dialogView.findViewById(R.id.creditAdd);
+        Button btnOK= dialogView.findViewById(R.id.btnOK);
+        Button btnCancel = dialogView.findViewById(R.id.btnCancel);
 
         builder.setView(dialogView).setMessage("Add a New info.");
 
@@ -44,13 +48,29 @@ public class DialogNewAdd extends DialogFragment {
                 newData.setCreditAmt(Double.valueOf(creditAdd.getText().toString()));
                 newData.setBalanceAmt(newData.getDebitAmt()-newData.getCreditAmt());
 
-                MainActivity.createList(newData);
+                listener.apply(newData);
                 dismiss();
-
             }
         });
         return builder.create();
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            listener = (DialogNewAddListener) context;
+        }
+        catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() +
+                    "Need to implement DialogNewAddListener");
+        }
+    }
+
+    public interface DialogNewAddListener {
+        void apply(Data data);
     }
 
 }

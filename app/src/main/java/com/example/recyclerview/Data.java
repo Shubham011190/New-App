@@ -1,11 +1,10 @@
 package com.example.recyclerview;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Data implements Parcelable {
+public class Data implements Parcelable, Serializable {
     private String name;
     private String date;
     private String ID;

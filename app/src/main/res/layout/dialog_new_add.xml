@@ -25,7 +25,7 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Date"
-        android:inputType="date"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idAdd" />
 
@@ -80,8 +80,8 @@
         android:id="@+id/btnOK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="casual"
         android:text="@android:string/ok"
         android:textColor="@android:color/black"

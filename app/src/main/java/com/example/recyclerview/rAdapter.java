@@ -1,5 +1,6 @@
 package com.example.recyclerview;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class rAdapter extends RecyclerView.Adapter<rAdapter.rViewHolder> {
     ArrayList<Data> mtemp;
 
-    public rAdapter(ArrayList<Data> mtemp){
+    public rAdapter(Context context, ArrayList<Data> mtemp){
         this.mtemp = mtemp;
     }
     @NonNull
@@ -32,14 +33,11 @@ public class rAdapter extends RecyclerView.Adapter<rAdapter.rViewHolder> {
         holder.dateView.setText(date1);
         holder.balanceView.setText(balance1);
 
-
-
-
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return mtemp.size();
     }
 
     public class rViewHolder extends RecyclerView.ViewHolder{

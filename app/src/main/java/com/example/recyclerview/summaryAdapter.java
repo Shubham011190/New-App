@@ -1,16 +1,21 @@
 package com.example.recyclerview;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class summaryAdapter extends RecyclerView.Adapter<summaryAdapter.summaryViewHolder> {
-    Data mtemp;
-    public summaryAdapter(Data mtemp){
+    ArrayList<Data> mtemp;
+    public summaryAdapter(Context context, ArrayList<Data> mtemp){
         this.mtemp = mtemp;
+        System.out.println(this.mtemp);
     }
 
     @NonNull
@@ -23,17 +28,14 @@ public class summaryAdapter extends RecyclerView.Adapter<summaryAdapter.summaryV
 
     @Override
     public void onBindViewHolder(@NonNull summaryViewHolder holder, int i) {
-        String name = mtemp.getName();
-        String id = mtemp.getID();
-        String date = mtemp.getDate();
-        String balance = String.valueOf(mtemp.getBalanceAmt());
+        String name = mtemp.get(i).getName();
+        String id = mtemp.get(i).getID();
+        String date = mtemp.get(i).getDate();
+        String balance = String.valueOf(mtemp.get(i).getBalanceAmt());
         holder.idView.setText(id);
         holder.nameView.setText(name);
         holder.dateView.setText(date);
         holder.balanceView.setText(balance);
-
-
-
 
     }
 
