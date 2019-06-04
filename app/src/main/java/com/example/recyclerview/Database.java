@@ -1,48 +1,68 @@
 package com.example.recyclerview;
 
+import android.content.ContentValues;
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import android.widget.Toast;
 
 public class Database extends SQLiteOpenHelper {
-    Context c;
-    public static final String DBname = "Accounts";
-    public static final String tableName = "Data";
-    public static final int dbVersion = 1;
+    public static final String DATABASE_NAME="Accounts";
+    public static final String TABLE_NAME="Data";
+    public static final String col1="NAME";
+    public static final String col2="ID";
+    public static final String col3="DATE";
+    public static final String col4="DEBIT";
+    public static final String col5="CREDIT";
+    public static final String col6="BALANCE";
+    public static final String col7="USERID";
     public Database(Context context){
-        super(context,DBname,null,dbVersion);
-        c=context;
+        super(context,DATABASE_NAME,null,1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        try{
-            String qry = "create table Account(Name TEXT PRIMARY KEY,id TEXT,date TEXT,debit REAL,credit REAL,balance REAL)";
-            db.execSQL(qry);
-            Toast.makeText(c,"Table Created",Toast.LENGTH_LONG).show();
-        }catch (Exception e){
-            Log.e("DB_create","DB Creation Error");
-        }
+        String qry="create table "+ TABLE_NAME +" (USERID INTEGER PRIMARY KEY AUTOINCREMENT ,NAME TEXT ,ID INTEGER,DATE TEXT,DEBIT REAL,CREDIT REAL,BALANCE REAL)";
+        db.execSQL(qry);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
+        onCreate(db);
 
     }
-    public boolean insertData(String name,String date,String id,double credit,double debit,double balance) {
-        try {
-            String qry = "insert into Account values('" + name + "','" + id + "','" + date + "'," + debit + "," + credit + "," + balance + ")";
-            SQLiteDatabase db = getWritableDatabase();
-            db.execSQL(qry);
-            Toast.makeText(c, "Data inserted successfully", Toast.LENGTH_LONG).show();
-            return true;
-        } catch (Exception e) {
-            Log.e("DB_insert", "Data insertion failed");
-            return false;
-        }
+    public void insertData(String name,String id,String date,double debit,double credit,double balance){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(col1,name);
+        contentValues.put(col2,id);
+        contentValues.put(col3,date);
+        contentValues.put(col4,debit);
+        contentValues.put(col5,credit);
+        contentValues.put(col6,balance);
+        db.insert(TABLE_NAME,null ,contentValues);
+        db.close();
+
+    }
+    public Cursor getAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+TABLE_NAME,null);
+        return res;
+    }
+    Data getData(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME,new String[]{col1,col2,col3,col4,col5,col6},col1 + "=?", new String[]{String.valueOf(col1)},null,null,null,null);
+        if(cursor!=null)
+            cursor.moveToFirst();
+        Data data = new Data();
+        data.setName(cursor.getString(0));
+        data.setID(cursor.getString(1));
+        data.setDate(cursor.getString(2));
+        data.setDebitAmt(Double.parseDouble(cursor.getString(3)));
+        data.setCreditAmt(Double.parseDouble(cursor.getString(4)));
+        data.setBalanceAmt(Double.parseDouble(cursor.getString(5)));
+        return data;
     }
 }
